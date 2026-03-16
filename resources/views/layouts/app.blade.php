@@ -20,6 +20,8 @@
                     </a>
                     <div class="hidden md:flex items-center gap-6">
                         <a href="{{ route('home') }}" class="text-sm font-medium text-gray-600 hover:text-green-700 transition-colors">Accueil</a>
+                        <a href="{{ route('showcase.index') }}" class="text-sm font-medium text-gray-600 hover:text-green-700 transition-colors">Showcase</a>
+                        <a href="{{ route('ideas.index') }}" class="text-sm font-medium text-gray-600 hover:text-green-700 transition-colors">Idées</a>
                         <a href="{{ route('home') }}#features" class="text-sm font-medium text-gray-600 hover:text-green-700 transition-colors">Fonctionnalités</a>
                     </div>
                 </div>
@@ -49,13 +51,11 @@
 
     @yield('content')
 
-    <footer class="bg-gray-900 text-white py-14 mt-20">
+    <footer class="bg-gray-900 text-white py-14">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="{{ asset('logo.png') }}" alt="Agrilab" class="h-8 brightness-0 invert">
-                    </div>
+                    <h4 class="font-semibold text-white text-lg mb-4">Agrilab</h4>
                     <p class="text-gray-400 text-sm leading-relaxed max-w-xs">
                         Plateforme collaborative de gestion de projets agricoles entre étudiants et enseignants. Innovez, partagez et apprenez ensemble.
                     </p>
@@ -64,15 +64,16 @@
                     <h4 class="font-semibold text-white mb-4">Navigation</h4>
                     <ul class="space-y-2">
                         <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Accueil</a></li>
+                        <li><a href="{{ route('showcase.index') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Showcase</a></li>
+                        <li><a href="{{ route('ideas.index') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Idées</a></li>
                         <li><a href="{{ route('login') }}" class="text-gray-400 hover:text-white text-sm transition-colors">Connexion</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-semibold text-white mb-4">Contact</h4>
                     <ul class="space-y-2">
-                        <li class="text-gray-400 text-sm">📧 contact@agrilab.dz</li>
-                        <li class="text-gray-400 text-sm">📞 +213 555 123 456</li>
-                        <li class="text-gray-400 text-sm">📍 Alger, Algérie</li>
+                        <li class="text-gray-400 text-sm">📧 agrilabfstt@gmail.com</li>
+                        <li class="text-gray-400 text-sm">📍 Faculté des Sciences et Techniques de Tanger<br>Ancienne Route de l'Aéroport, Km 10, Ziaten, BP 416, Tanger, Maroc</li>
                     </ul>
                 </div>
             </div>

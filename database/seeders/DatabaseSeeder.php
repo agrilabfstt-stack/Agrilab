@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // Admin account
         User::create([
             'name'     => 'Administrateur',
-            'email'    => 'admin@agrilab.dz',
+            'email'    => 'admin@gmail.com',
             'password' => Hash::make('Admin@1234'),
             'role'     => 'admin',
         ]);
@@ -22,14 +22,14 @@ class DatabaseSeeder extends Seeder
         // Sample professors
         $prof1 = User::create([
             'name'     => 'Prof. Ahmed Benali',
-            'email'    => 'ahmed.benali@agrilab.dz',
+            'email'    => 'ahmed.benali@gmail.com',
             'password' => Hash::make('Prof@1234'),
             'role'     => 'professor',
         ]);
 
         $prof2 = User::create([
             'name'     => 'Prof. Fatima Zohra',
-            'email'    => 'fatima.zohra@agrilab.dz',
+            'email'    => 'fatima.zohra@gmail.com',
             'password' => Hash::make('Prof@1234'),
             'role'     => 'professor',
         ]);
@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
         // Sample students
         User::create([
             'name'         => 'Karim Hadj',
-            'email'        => 'karim.hadj@agrilab.dz',
+            'email'        => 'karim.hadj@gmail.com',
             'password'     => Hash::make('Student@1234'),
             'role'         => 'student',
             'professor_id' => $prof1->id,
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name'         => 'Sarah Amrani',
-            'email'        => 'sarah.amrani@agrilab.dz',
+            'email'        => 'sarah.amrani@gmail.com',
             'password'     => Hash::make('Student@1234'),
             'role'         => 'student',
             'professor_id' => $prof1->id,
@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name'         => 'Youcef Brahim',
-            'email'        => 'youcef.brahim@agrilab.dz',
+            'email'        => 'youcef.brahim@gmail.com',
             'password'     => Hash::make('Student@1234'),
             'role'         => 'student',
             'professor_id' => $prof2->id,

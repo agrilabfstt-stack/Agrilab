@@ -13,7 +13,15 @@ class Project extends Model
         'created_by',
         'category_id',
         'status',
+        'is_showcased',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'is_showcased' => 'boolean',
+        ];
+    }
 
     public function user()
     {

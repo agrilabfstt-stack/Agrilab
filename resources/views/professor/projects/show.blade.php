@@ -30,7 +30,20 @@
                         · Créé {{ $project->created_at->diffForHumans() }}
                     </p>
                 </div>
-                <div class="flex gap-2 flex-shrink-0">
+                <div class="flex gap-2 flex-shrink-0" x-data="{ showcased: {{ $project->is_showcased ? 'true' : 'false' }} }">
+                    <button @click="async () => {
+                        const fd = new FormData(); fd.append('_method', 'PATCH');
+                        const resp = await fetch('/projects/{{ $project->id }}/showcase', {
+                            method: 'POST',
+                            headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content, 'Accept': 'application/json' },
+                            body: fd
+                        });
+                        if (resp.ok) { const d = await resp.json(); showcased = d.is_showcased; }
+                    }()"
+                        :class="showcased ? 'bg-amber-50 text-amber-700 hover:bg-amber-100' : 'bg-gray-50 text-gray-600 hover:bg-gray-100'"
+                        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors">
+                        <span x-text="showcased ? '⭐ Showcase' : '☆ Showcase'"></span>
+                    </button>
                     <a href="{{ route('professor.projects.edit', $project) }}"
                        class="inline-flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-medium transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>

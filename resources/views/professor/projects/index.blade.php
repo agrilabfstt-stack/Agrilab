@@ -63,6 +63,11 @@
         <div class="px-5 py-3.5 border-t border-gray-100 flex items-center justify-between">
             <span class="text-xs text-gray-400">{{ $project->updated_at->diffForHumans() }}</span>
             <div class="flex gap-2">
+                <button onclick="toggleShowcase({{ $project->id }}, this)"
+                        class="text-xs px-3 py-1.5 rounded-lg border transition-colors
+                        {{ $project->is_showcased ? 'border-amber-300 text-amber-700 bg-amber-50 hover:bg-amber-100' : 'border-gray-300 text-gray-600 hover:bg-gray-50' }}">
+                    {{ $project->is_showcased ? '⭐ Showcase' : '☆ Showcase' }}
+                </button>
                 <form method="POST" action="{{ route('professor.projects.toggle-status', $project) }}">
                     @csrf @method('PATCH')
                     <button type="submit"
@@ -92,4 +97,34 @@
 @if($projects->hasPages())
 <div class="mt-6">{{ $projects->withQueryString()->links() }}</div>
 @endif
+
+@push('scripts')
+<script>
+async function toggleShowcase(projectId, btn) {
+    const csrf = document.querySelector('meta[name="csrf-token"]').content;
+    try {
+        const fd = new FormData();
+        fd.append('_method', 'PATCH');
+        const resp = await fetch('/projects/' + projectId + '/showcase', {
+            method: 'POST',
+            headers: { 'X-CSRF-TOKEN': csrf, 'Accept': 'application/json' },
+            body: fd
+        });
+        if (!resp.ok) throw new Error('Erreur');
+        const data = await resp.json();
+        if (data.is_showcased) {
+            btn.classList.add('border-amber-300', 'text-amber-700', 'bg-amber-50', 'hover:bg-amber-100');
+            btn.classList.remove('border-gray-300', 'text-gray-600', 'hover:bg-gray-50');
+            btn.textContent = '⭐ Showcase';
+        } else {
+            btn.classList.remove('border-amber-300', 'text-amber-700', 'bg-amber-50', 'hover:bg-amber-100');
+            btn.classList.add('border-gray-300', 'text-gray-600', 'hover:bg-gray-50');
+            btn.textContent = '☆ Showcase';
+        }
+    } catch (e) {
+        alert('Erreur lors de la mise à jour du showcase.');
+    }
+}
+</script>
+@endpush
 @endsection

@@ -193,8 +193,8 @@ class ProjectController extends Controller
     protected function authorizeProject(Project $project): void
     {
         $professor = Auth::user();
-        $allowed = $project->created_by === $professor->id
-            || ($project->user && $project->user->professor_id === $professor->id);
+        $allowed = (int) $project->created_by === (int) $professor->id
+            || ($project->user && (int) $project->user->professor_id === (int) $professor->id);
 
         if (! $allowed) {
             abort(403);

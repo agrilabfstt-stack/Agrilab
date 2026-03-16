@@ -6,6 +6,11 @@
 
 {{-- Hero --}}
 <section class="relative bg-gradient-to-br from-green-900 via-green-800 to-emerald-700 text-white overflow-hidden min-h-[600px] flex items-center">
+    <!-- Nature image on the right with smooth fade -->
+    <div class="absolute inset-y-0 right-0 w-[40%] hidden lg:block">
+        <img src="{{ asset('nature.jpeg') }}" alt="" class="w-full h-full object-cover opacity-60">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-800 via-green-800/70 to-green-800/20"></div>
+    </div>
     <div class="absolute inset-0 opacity-[0.07]">
         <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
             <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
